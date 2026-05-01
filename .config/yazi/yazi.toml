@@ -1,0 +1,21 @@
+[opener]
+image = [
+  { run = 'ristretto "$@"', orphan = true, desc = "Ristretto" },
+]
+pdf = [
+  { run = 'evince "$@"', orphan = true, desc = "Evince" },
+]
+video = [
+  { run = 'mpv "$@"', orphan = true, desc = "MPV" },
+]
+text = [
+  { run = 'nvim "$@"', block = true, desc = "Neovim" },
+]
+
+[open]
+rules = [
+  { mime = "text/*", use = "text" },
+  { mime = "image/*", use = "image" },
+  { mime = "application/pdf", use = "pdf" },
+  { mime = "video/*", use = "video" },
+]

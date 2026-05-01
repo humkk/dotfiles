@@ -1,0 +1,17 @@
+@import url("colors.css");
+
+window {
+    background-color: alpha(@window_bg_color, 0.8);
+}
+
+headerbar {
+    background-color: alpha(@headerbar_bg_color, 0.8);
+}
+
+.sidebar {
+    background-color: alpha(@sidebar_bg_color, 0.8);
+}
+
+.view {
+    background-color: alpha(@view_bg_color, 0.7);
+}

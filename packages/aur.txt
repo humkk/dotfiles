@@ -1,0 +1,11 @@
+brave-bin
+cbonsai
+peaclock
+pipes-rs
+protonup-qt
+python-inputs
+python-steam
+vesktop
+vscodium-bin
+yay
+zen-browser-bin
