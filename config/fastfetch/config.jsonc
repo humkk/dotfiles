@@ -1,0 +1,41 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "type": "kitty-direct",
+    "source": "/home/hum/Pictures/Icons/1.png",
+    "width": 30,
+    "height": 15,
+    "padding": {
+      "top": 0,
+      "left": 2,
+      "right": 4
+    },
+    "preserveAspectRatio": true,
+    "position": "left"
+  },
+  "display": {
+    "color": {
+        "keys": "blue",
+        "output": "white",
+        "separator": "blue",
+        "title": "red"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    { "type": "os", "format": "{name}" },
+    "shell",
+    "terminal",
+    "wm",
+    "cpu",
+    "gpu",
+    "memory",
+    "swap",
+    "uptime",
+    "terminalfont",
+    "break",
+    "colors"
+  ]
+}
+

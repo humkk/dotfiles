@@ -1,0 +1,38 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 15px;
+    min-height: 0;
+}
+
+#waybar{
+	background: alpha(#1a1b26, 0.8);
+	color: #7aa2f7;
+}
+
+#workspaces {
+    border-radius: 1px;
+    padding: 3px 3px;
+    margin: 0px 10px;
+}
+#workspaces button {
+    padding: 0 5px;
+    color: alpha(#a9b1d6, 0.3);
+}
+
+#workspaces button.active {
+    color: #7aa2f7;
+}
+
+#clock {
+    color: #7aa2f7;
+    padding: 0 10px;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: black;
+    }
+}
