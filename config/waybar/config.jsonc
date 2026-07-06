@@ -1,14 +1,16 @@
 {
     "layer": "top",
-    //"position": "bottom",
+//    "position": "bottom",
     "modules-left": ["custom/logo","hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["clock"],
+//    "modules-center": ["custom/logo","hyprland/workspaces"],
+//    "modules-center": ["hyprland/window"],
+//    "modules-right": ["clock"],
+    "modules-center": ["clock"],
     "hyprland/window": {
         "max-length": 50
     },
     "clock": {
-        "format": "{:%a, %d. %b  %H:%M}",
+        "format": "{:%H:%M}",
 	"on-click": "kitty -e calcurse"
     },
     "hyprland/workspaces": {

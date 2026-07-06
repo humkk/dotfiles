@@ -1,12 +1,16 @@
 return {
-	"folke/tokyonight.nvim",
-	lazy = false, -- load at startup
-	priority = 1000, -- load before other plugins
+	"catppuccin/nvim",
+	name = "catppuccin",
+	lazy = false,
+	priority = 1000,
 	config = function()
-		require("tokyonight").setup({
-			style = "night", -- night, storm, moon, day
-			transparent = true,
+		require("catppuccin").setup({
+			flavour = "macchiato",
+			transparent_background = true,
+			integrations = {
+				lualine = true,
+			},
 		})
-		vim.cmd.colorscheme("tokyonight")
+		vim.cmd.colorscheme("catppuccin")
 	end,
 }

@@ -13,8 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	require("hum.plugins.telescope"),
-	require("hum.plugins.ui"),
 	require("hum.plugins.editor"),
+	require("hum.plugins.ui"),
 	require("hum.plugins.formatting"),
 	require("hum.plugins.treesitter"),
 	require("hum.plugins.statusline"),

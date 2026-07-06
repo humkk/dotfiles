@@ -1,0 +1,3 @@
+function emerge
+    elogind-inhibit --what=idle:sleep command emerge $argv
+end

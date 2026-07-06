@@ -1,3 +1,5 @@
+@import "colors.css";
+
 * {
     border: none;
     border-radius: 0;
@@ -7,8 +9,8 @@
 }
 
 #waybar{
-	background: alpha(#1a1b26, 0.8);
-	color: #7aa2f7;
+	background: alpha(@on_primary_fixed, 0.76);
+	color: @primary;
 }
 
 #workspaces {
@@ -18,15 +20,15 @@
 }
 #workspaces button {
     padding: 0 5px;
-    color: alpha(#a9b1d6, 0.3);
+    color: alpha(@primary, 0.3);
 }
 
 #workspaces button.active {
-    color: #7aa2f7;
+    color: @primary;
 }
 
 #clock {
-    color: #7aa2f7;
+    color: @primary;
     padding: 0 10px;
 }
 

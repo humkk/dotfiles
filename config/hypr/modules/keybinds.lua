@@ -1,86 +1,106 @@
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
+local vars = require("variables")
+local fn = require("modules.functions")
 
-local mainMod = "SUPER"
-local closeWindowBind = hl.bind(mainMod .. " + W", hl.dsp.window.close())
+local mod = vars.mainMod or "SUPER" -- keep everything driven off one source of truth
 
-----------
--- Apps --
-----------
+-- ============================================================
+-- 	Special workspace apps (toggle-or-launch)
+-- ============================================================
 
---- # VARIABLES
+local specialApps = {
+	{ key = "D", class = "vesktop", exec = "vesktop-bin", special = "communication" },
+	{ key = "M", class = "freetube", exec = "freetube-bin", special = "music" },
+	{ key = "K", class = "org.keepassxc.KeePassXC", exec = "keepassxc", special = "security" },
+}
+for _, app in ipairs(specialApps) do
+	hl.bind(mod .. " + " .. app.key, fn.toggleOrLaunch(app.class, app.exec, app.special))
+end
 
--- tui
-local calendar = "calcurse"
-local terminal = "kitty"
-local fileManager = "yazi"
-local editor = "nvim"
+-- ============================================================
+-- 	Apps
+-- ============================================================
 
--- gui
-local guiFileManager = "nautilus"
-local guiAudioSettings = "pavucontrol"
-local guiBrowser = "librewolf"
-local guiPasswdManager = "keepassxc"
+hl.bind(mod .. " + Q", hl.dsp.exec_cmd(vars.terminal))
+hl.bind(mod .. " + W", hl.dsp.window.close())
+hl.bind(mod .. " + C", hl.dsp.exec_cmd(vars.terminal .. " " .. vars.calendar))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd(vars.terminal .. " " .. vars.fileManager))
+hl.bind(mod .. " + A", hl.dsp.exec_cmd(vars.terminal .. " " .. vars.editor))
 
---- # ACTIONS
+hl.bind(mod .. " + B", hl.dsp.exec_cmd(vars.browser))
+hl.bind(mod .. " + ALT + P", hl.dsp.exec_cmd(vars.audioSettings))
+hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd(vars.fileManagerGui))
 
--- tui
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal .. " " .. calendar))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " " .. fileManager))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(terminal .. " " .. editor))
+hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(vars.terminal .. " " .. vars.taskManager))
 
--- gui
-hl.bind(mainMod .. " + ALT + B", hl.dsp.exec_cmd(guiBrowser))
-hl.bind(mainMod .. " + ALT + E", hl.dsp.exec_cmd(guiFileManager))
-hl.bind(mainMod .. " + ALT + V", hl.dsp.exec_cmd(guiAudioSettings))
-hl.bind(mainMod .. " + ALT + K", hl.dsp.exec_cmd(guiPasswdManager))
+-- ============================================================
+-- 	Utilities
+-- ============================================================
 
--- others
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("bash -c 'grim -g \"$(slurp)\" - | wl-copy --type image/png'"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("bash -c 'grim -g \"$(slurp)\" - | wl-copy --type image/png'"))
 
-----------------
--- Workspaces --
-----------------
+-- ============================================================
+-- 	Workspaces (focus + move)
+-- ============================================================
 
 for i = 1, 10 do
 	local key = i % 10
-	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + ALT + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mod .. " + ALT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
---------------------
--- Window actions --
---------------------
+-- ============================================================
+-- 	Window focus / move (directional)
+-- ============================================================
 
--- move focus
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+local directions = { left = "left", right = "right", up = "up", down = "down" }
 
--- move window
-hl.bind("SUPER + SHIFT + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind("SUPER + SHIFT + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind("SUPER + SHIFT + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind("SUPER + SHIFT + down", hl.dsp.window.move({ direction = "down" }))
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+for name, dir in pairs(directions) do
+	hl.bind(mod .. " + " .. name, hl.dsp.focus({ direction = dir }))
+	hl.bind(mod .. " + SHIFT + " .. name, hl.dsp.window.move({ direction = dir }))
+end
 
--- resize window
-hl.bind(mainMod .. " + ALT + right", hl.dsp.window.resize({ x = 45, y = 0, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + ALT + left", hl.dsp.window.resize({ x = -45, y = 0, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + ALT + down", hl.dsp.window.resize({ x = 0, y = 45, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + ALT + up", hl.dsp.window.resize({ x = 0, y = -45, relative = true }), { repeating = true })
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+-- ============================================================
+-- 	Window resize (directional, step = 45px)
+-- ============================================================
 
--- full screen
-hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+local resizeStep = 45
+local resizeVectors = {
+	right = { x = resizeStep, y = 0 },
+	left = { x = -resizeStep, y = 0 },
+	down = { x = 0, y = resizeStep },
+	up = { x = 0, y = -resizeStep },
+}
 
--- Other
+for name, vec in pairs(resizeVectors) do
+	hl.bind(
+		mod .. " + ALT + " .. name,
+		hl.dsp.window.resize({ x = vec.x, y = vec.y, relative = true }),
+		{ repeating = true }
+	)
+end
+
+-- ============================================================
+-- 	Mouse binds
+-- ============================================================
+
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+-- ============================================================
+-- 	Window state
+-- ============================================================
+
+hl.bind(mod .. " + ALT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind("CTRL + SUPER + slash", hl.dsp.window.center())
+
+-- ============================================================
+-- 	Session
+-- ============================================================
+
 hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+	mod .. " + M",
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
 )
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
