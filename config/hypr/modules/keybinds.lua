@@ -36,7 +36,7 @@ hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd(vars.terminal .. " " .. vars.ta
 -- 	Utilities
 -- ============================================================
 
-hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("bash -c 'grim -g \"$(slurp)\" - | wl-copy --type image/png'"))
+hl.bind(mod .. " + SHIFT + X", hl.dsp.exec_cmd("bash -c 'grim -g \"$(slurp)\" - | wl-copy --type image/png'"))
 
 -- ============================================================
 -- 	Workspaces (focus + move)
@@ -47,6 +47,9 @@ for i = 1, 10 do
 	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mod .. " + ALT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
+
+hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- ============================================================
 -- 	Window focus / move (directional)

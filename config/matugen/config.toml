@@ -1,0 +1,38 @@
+[config]
+
+# ---------------------------------------------------------------------------------------- #
+
+# Changing the syntax
+# Expr is for keywords like {{ <keyword> }}
+expr_prefix = "{{"
+expr_postfix = "}}"
+
+# Block is for stuff like for loops etc.
+block_prefix = "<*"
+block_postfix = "*>"
+
+# Will set the source color index just like the `--source-color-index` CLI flag (0 - 4).
+# 0 = most dominant, 1 = 2nd most dominant, etc.
+# IF the CLI flag is specified, it will override this value.
+source_color_index = 0
+
+# ---------------------------------------------------------------------------------------- #
+
+[config.wallpaper]
+set = true
+command = "swww img --transition-type center --transition-fps 120 {{ image }}"
+
+# ---------------------------------------------------------------------------------------- #
+
+# One of `SchemeContent`, `SchemeExpressive`, `SchemeFidelity`, `SchemeFruitSalad`, `SchemeMonochrome`, `SchemeNeutral`, `SchemeRainbow`, `SchemeTonalSpot`, `SchemeVibrant`
+type = "SchemeExpressive"
+
+# ---------------------------------------------------------------------------------------- #
+
+[templates.hyprland]
+input_path = './templates/hyprland-colors.lua'
+output_path = '~/.config/hypr/themes/colors.lua'
+
+[templates.foot]
+input_path = './templates/foot-colors.ini'
+output_path = '~/.config/foot/colors.ini'

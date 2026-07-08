@@ -3,7 +3,7 @@ local colors = require("themes.colors")
 return {
 
 	-- Apps
-	terminal = "kitty",
+	terminal = "foot",
 	fileManager = "yazi",
 	editor = "nvim",
 	calendar = "calcurse",
@@ -27,7 +27,7 @@ return {
 	shadowEnabled = true,
 	shadowRange = 10,
 	shadowRenderPower = 4,
-	shadowColour = colors.shadow,
+	shadowColour = colors.on_primary,
 
 	-- Gaps
 	workspaceGaps = 20,

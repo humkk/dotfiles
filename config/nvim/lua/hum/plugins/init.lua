@@ -19,4 +19,5 @@ require("lazy").setup({
 	require("hum.plugins.treesitter"),
 	require("hum.plugins.statusline"),
 	require("hum.plugins.markdown"),
+	require("hum.plugins.lsp"),
 })

@@ -32,7 +32,7 @@ hl.window_rule({ match = { tag = "float" }, float = true })
 -- Opaque Apps
 hl.window_rule({
 	match = {
-		class = "kitty|imv|godot|(steam_app_(default|[0-9]+))",
+		class = "foot|imv|godot|(steam_app_(default|[0-9]+))",
 	},
 	tag = "+opaque_app",
 })
@@ -129,6 +129,13 @@ hl.window_rule({
 		class = "ncmpcpp|freetube",
 	},
 	workspace = "special:music",
+})
+
+hl.window_rule({
+	match = {
+		class = "^mpv$",
+	},
+	workspace = "special:magic",
 })
 
 hl.window_rule({
