@@ -1,6 +1,6 @@
 return {
-	image = "/home/hum/Pictures/Wallpapers/wallhaven-o5jv65.jpg",
-	primary = "#baa4ff",
-	on_primary = "#0c0916",
+	image = "/home/hum/Pictures/Wallpapers/wallpaperflare.com_wallpaper.jpg",
+	primary = "#aca7ff",
+	on_primary = "#0b0a19",
 	shadow = "#000000",
 }

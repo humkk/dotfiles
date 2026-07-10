@@ -25,7 +25,7 @@ command = "swww img --transition-type center --transition-fps 120 {{ image }}"
 # ---------------------------------------------------------------------------------------- #
 
 # One of `SchemeContent`, `SchemeExpressive`, `SchemeFidelity`, `SchemeFruitSalad`, `SchemeMonochrome`, `SchemeNeutral`, `SchemeRainbow`, `SchemeTonalSpot`, `SchemeVibrant`
-type = "SchemeExpressive"
+type = "SchemeContent"
 
 # ---------------------------------------------------------------------------------------- #
 
@@ -36,3 +36,14 @@ output_path = '~/.config/hypr/themes/colors.lua'
 [templates.foot]
 input_path = './templates/foot-colors.ini'
 output_path = '~/.config/foot/colors.ini'
+
+[templates.gtk3]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+post_hook = '~/.config/matugen/post-hook-scripts/gtk-themes-reload.sh'
+

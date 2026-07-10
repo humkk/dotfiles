@@ -15,6 +15,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hypridle")
 	hl.exec_cmd("dunst")
 	hl.exec_cmd("calcurse --daemon")
+	hl.exec_cmd("xrdb -merge ~/.Xresources")
 
 	-- Storage
 	hl.exec_cmd("gvfs-udisks2-volume-monitor") -- USB identification

@@ -104,6 +104,6 @@ hl.bind("CTRL + SUPER + slash", hl.dsp.window.center())
 -- ============================================================
 
 hl.bind(
-	mod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit")
+	mod .. " + SHIFT + M",
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
