@@ -1,0 +1,13 @@
+input {
+	keyboard {		
+		xkb {
+			layout "us,br"
+	    
+	                // toggle keyboard layouts
+			options "grp:win_space_toggle" 
+		}
+
+	// Enable numlock on startup.
+	numlock 
+	}
+}

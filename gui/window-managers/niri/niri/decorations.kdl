@@ -1,0 +1,44 @@
+// #  Window Decoration -----------------------------------------------------------------------------
+
+layout {
+    gaps 12
+    center-focused-column "never"
+    always-center-single-column
+
+    background-color "#11111b"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    focus-ring {
+        width 2
+        active-color "#cba6f7"
+        inactive-color "#1e1e2e"
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#11111b"
+    }
+}
+
+prefer-no-csd
+	
+// Border Radius
+window-rule {
+	geometry-corner-radius 12
+	clip-to-geometry true
+}
+
+// # -- Animations ---------------------------------------------------------------------------------
+
+animations {
+    on
+    slowdown 1.3
+}

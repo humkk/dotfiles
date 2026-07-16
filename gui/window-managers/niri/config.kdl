@@ -1,0 +1,6 @@
+include "niri/input.kdl"
+include "niri/monitors.kdl"
+include "niri/decorations.kdl"
+include "niri/execs.kdl"
+include "niri/rules.kdl"
+include "niri/keybinds.kdl"
